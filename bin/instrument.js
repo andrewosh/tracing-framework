@@ -346,7 +346,7 @@ function processFile(argv, inputPath, opt_outputPath) {
   var sourceCode = fs.readFileSync(inputPath).toString();
 
   // TODO(benvanik): support setting the module ID?
-  var targetCode = transformCode(argv.module, inputPath, sourceCode, argv);
+  var targetCode = transformCode(argv['module'], inputPath, sourceCode, argv);
 
   console.log('Writing ' + outputPath + '...');
   fs.writeFileSync(outputPath, targetCode);
