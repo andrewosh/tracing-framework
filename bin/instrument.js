@@ -382,6 +382,7 @@ function startServer(argv, httpPort, httpsPort, certs) {
     source.on('end', function() {
       try {
         var targetCode = transformCode(moduleId, url, sourceCode, argv);
+        console.log('CREATED TARGET CODE:', targetCode)
         target.end(targetCode);
       } catch (e) {
         console.log('Error during transformation, writing through.');
