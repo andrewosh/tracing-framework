@@ -41,7 +41,7 @@ var ctx = {
     'falafel': falafel
   }
 };
-var processScriptPath = 'extensions/wtf-injector-chrome/wtf-process.js';
+var processScriptPath = '../extensions/wtf-injector-chrome/wtf-process.js';
 vm.runInNewContext(fs.readFileSync(processScriptPath), ctx, processScriptPath);
 var processScript = ctx['wtfi']['process'];
 
