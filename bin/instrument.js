@@ -346,7 +346,7 @@ function processFile(argv, inputPath, opt_outputPath) {
   var sourceCode = fs.readFileSync(inputPath).toString();
 
   // TODO(benvanik): support setting the module ID?
-  var targetCode = transformCode(0, inputPath, sourceCode, argv);
+  var targetCode = transformCode(argv.module, inputPath, sourceCode, argv);
 
   console.log('Writing ' + outputPath + '...');
   fs.writeFileSync(outputPath, targetCode);
@@ -368,11 +368,11 @@ function startServer(argv, httpPort, httpsPort, certs) {
 
   // Injects a node stream by buffering all data, transforming it, and writing
   // it back out.
-  // Module IDs are assigned on demand and rotate 0-126.
+  // Module IDs are assigned on demand and rotate 0-255.
   var nextModuleId = 0;
   function injectStream(url, source, target) {
     var moduleId = nextModuleId++;
-    if (nextModuleId >= 127) {
+    if (nextModuleId >= 255) {
       nextModuleId = 0;
     }
     var sourceCode = '';
